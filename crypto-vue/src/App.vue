@@ -1,17 +1,10 @@
 <template>
   <v-app theme="dark">
-    <v-navigation-drawer
-        location="right"
-        app>
-      <!-- -->
-    </v-navigation-drawer>
-
     <v-app-bar app>
       <v-spacer></v-spacer>
       <h3>Cryptography Online Tool</h3>
       <v-spacer></v-spacer>
     </v-app-bar>
-
 
     <!-- Sizes your content based upon application components -->
     <v-main>
@@ -43,7 +36,11 @@ export default {
   components: {HashFunction},
 
   data: () => ({
-    //
+    items: [
+      {title: 'Home', icon: 'mdi-home-city'},
+      {title: 'My Account', icon: 'mdi-account'},
+      {title: 'Users', icon: 'mdi-account-group-outline'},
+    ]
   }),
 }
 </script>
