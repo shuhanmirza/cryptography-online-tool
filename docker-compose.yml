@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      VIRTUAL_HOST: crypto.shuhanmirza.com
+      VIRTUAL_PORT: 8080
+      LETSENCRYPT_HOST: crypto.shuhanmirza.com
+      LETSENCRYPT_EMAIL: shuhan.mirza@gmail.com
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+volumes:
+  data:
