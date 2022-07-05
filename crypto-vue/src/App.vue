@@ -21,7 +21,7 @@
           fluid
           class="copyright-footer"
       >
-        Ⓒ <a href="https://shuhanmirza.com">Shuhan Mirza</a>
+        <a href="https://github.com/shuhanmirza/cryptography-online-tool">Github Repo</a>
       </v-container>
     </v-footer>
   </v-app>

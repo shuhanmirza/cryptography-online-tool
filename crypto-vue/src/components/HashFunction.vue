@@ -1,8 +1,20 @@
 <template>
   <v-container fluid>
     <div class="component-title">
-      <h3>{{ algorithm }}</h3>
+      <h3> Hash Function </h3>
     </div>
+    <v-select
+        v-model="select"
+        :items="items"
+        :hint="'Select Algorithm'"
+        label="Select"
+        persistent-hint
+        return-object
+        single-line
+    ></v-select>
+
+    <br>
+
     <v-textarea
         id="hash-input"
         label="Input Text Here"
@@ -10,7 +22,9 @@
         counter=""
         v-model="inputValue"
     />
+
     <br>
+
     <v-textarea
         id="hash-output"
         label="Output"
@@ -26,19 +40,18 @@
 <script>
 export default {
   name: "HashFunction",
-  props: {
-    algorithm: String
-  },
   inject: ["HASH_FUNCTIONS"],
   data() {
     return {
       inputValue: "",
+      items: Object.keys(this.HASH_FUNCTIONS),
+      select: Object.keys(this.HASH_FUNCTIONS)[0]
     }
   },
   computed: {
     outputValue: {
       get() {
-        return this.HASH_FUNCTIONS[this.algorithm](this.inputValue)
+        return this.HASH_FUNCTIONS[this.select](this.inputValue)
       }
     }, set(val) {
       return val
@@ -46,6 +59,8 @@ export default {
   },
   methods: {
     test() {
+
+      console.log();
       /*
       let aesKeyHex = CryptoJS.enc.Hex.parse(Buffer.from(this.aesKey, 'base64').toString('hex'));
       let ivHex = CryptoJS.enc.Hex.parse(Buffer.from(this.aesIv, 'base64').toString('hex'));
