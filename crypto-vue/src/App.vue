@@ -10,10 +10,41 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <hash-function
-            algorithm="SHA256"
-        />
+        <v-card>
+          <v-tabs
+              show-arrows
+              slider-color="orange-lighten-3"
+              color="orange"
+              v-model="tabValue"
+          >
+            <v-tab
+                v-for="item in tabItems"
+                :key="item.value"
+                :value="item.value">
+              {{ item.title }}
+            </v-tab>
+          </v-tabs>
+        </v-card>
       </v-container>
+
+      <v-container fluid>
+        <v-window v-model="tabValue">
+
+          <v-window-item value="hash">
+            <hash-function/>
+          </v-window-item>
+
+          <v-window-item value="enc-dec">
+            <EncodeDecode/>
+          </v-window-item>
+
+          <v-window-item value="sym-encrypt">
+            <SymmetricEncryption/>
+          </v-window-item>
+
+        </v-window>
+      </v-container>
+
     </v-main>
 
     <v-footer app>
@@ -30,16 +61,19 @@
 <script>
 
 import HashFunction from "@/components/HashFunction";
+import EncodeDecode from "@/components/EncodeDecode";
+import SymmetricEncryption from "@/components/SymmetricEncryption";
 
 export default {
   name: 'App',
-  components: {HashFunction},
+  components: {SymmetricEncryption, EncodeDecode, HashFunction},
 
   data: () => ({
-    items: [
-      {title: 'Home', icon: 'mdi-home-city'},
-      {title: 'My Account', icon: 'mdi-account'},
-      {title: 'Users', icon: 'mdi-account-group-outline'},
+    tabValue: 'hash',
+    tabItems: [
+      {title: 'Hash Function', value: 'hash'},
+      {title: 'Encode-Decode', value: 'enc-dec'},
+      {title: 'Symmetric Encryption', value: 'sym-encrypt'},
     ]
   }),
 }
