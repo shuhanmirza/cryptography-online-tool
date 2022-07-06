@@ -70,7 +70,7 @@ export default {
   components: {HmacFunction, SymmetricEncryption, HashFunction},
 
   data: () => ({
-    tabValue: 'hmac',
+    tabValue: 'hash',
     tabItems: [
       {title: 'Hash Function', value: 'hash'},
       {title: 'HMAC', value: 'hmac'},
