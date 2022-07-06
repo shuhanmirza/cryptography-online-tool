@@ -10,7 +10,7 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <v-card>
+        <v-card >
           <v-tabs
               show-arrows
               slider-color="orange-lighten-3"
@@ -20,7 +20,8 @@
             <v-tab
                 v-for="item in tabItems"
                 :key="item.value"
-                :value="item.value">
+                :value="item.value"
+            >
               {{ item.title }}
             </v-tab>
           </v-tabs>
@@ -34,8 +35,8 @@
             <hash-function/>
           </v-window-item>
 
-          <v-window-item value="enc-dec">
-            <EncodeDecode/>
+          <v-window-item value="hmac">
+            <HmacFunction/>
           </v-window-item>
 
           <v-window-item value="sym-encrypt">
@@ -50,7 +51,7 @@
     <v-footer app>
       <v-container
           fluid
-          class="copyright-footer"
+          class="repo-footer"
       >
         <a href="https://github.com/shuhanmirza/cryptography-online-tool">Github Repo</a>
       </v-container>
@@ -61,26 +62,26 @@
 <script>
 
 import HashFunction from "@/components/HashFunction";
-import EncodeDecode from "@/components/EncodeDecode";
 import SymmetricEncryption from "@/components/SymmetricEncryption";
+import HmacFunction from "@/components/HmacFunction";
 
 export default {
   name: 'App',
-  components: {SymmetricEncryption, EncodeDecode, HashFunction},
+  components: {HmacFunction, SymmetricEncryption, HashFunction},
 
   data: () => ({
-    tabValue: 'hash',
+    tabValue: 'hmac',
     tabItems: [
       {title: 'Hash Function', value: 'hash'},
-      {title: 'Encode-Decode', value: 'enc-dec'},
-      {title: 'Symmetric Encryption', value: 'sym-encrypt'},
+      {title: 'HMAC', value: 'hmac'},
+      //{title: 'Symmetric Encryption', value: 'sym-encrypt'},
     ]
   }),
 }
 </script>
 
 <style scoped>
-.copyright-footer {
+.repo-footer {
   margin-left: auto;
 }
 </style>
