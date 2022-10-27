@@ -26,8 +26,30 @@ const HMAC_FUNCTIONS = {
     "HmacMD5": CryptoJS.HmacMD5,
 }
 
+const SYM_ENC_FUNCTIONS = {
+    "AES": {
+        func: CryptoJS.AES,
+    },
+    "DES" : {
+        func: CryptoJS.DES
+    },
+   /* "Tripple DES" : {
+        func: CryptoJS.TrippleDES
+    }, */  // It invokes a unknown error
+    "Rabbit" : {
+        func: CryptoJS.Rabbit
+    },
+    "RC4" : {
+        func: CryptoJS.RC4
+    },
+    "RC4Drop" : {
+        func: CryptoJS.RC4Drop
+    }
+}
+
 createApp(App)
     .use(vuetify)
     .provide("HASH_FUNCTIONS", HASH_FUNCTIONS)
     .provide("HMAC_FUNCTIONS", HMAC_FUNCTIONS)
+    .provide("SYM_ENC_FUNCTIONS", SYM_ENC_FUNCTIONS)
     .mount('#app')

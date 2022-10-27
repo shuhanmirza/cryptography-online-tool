@@ -18,9 +18,27 @@
     <v-textarea
         id="hash-input"
         label="Input Text Here"
+        rows="3"
         outlined
         counter=""
         v-model="inputValue"
+        hint="Text Format"
+        :persistent-counter="true"
+        :persistent-hint="true"
+    />
+
+    <br>
+
+    <v-textarea
+        id="hash-passphrase-input"
+        label="Input Passphrase Here"
+        rows="1"
+        outlined
+        counter=""
+        v-model="passphraseValue"
+        hint="Text Format"
+        :persistent-counter="true"
+        :persistent-hint="true"
     />
 
     <br>
@@ -32,26 +50,33 @@
         counter=""
         rows="2"
         v-model="outputValue"
+        hint="Base64 Format"
         readonly
+        :persistent-hint="true"
+        :persistent-counter="true"
     />
   </v-container>
 </template>
 
 <script>
+import CryptoJS from "@/plugins/crypto-js-4.1.1";
+
 export default {
   name: "SymmetricEncryption",
-  inject: ["HASH_FUNCTIONS"],
+  inject: ["SYM_ENC_FUNCTIONS"],
   data() {
     return {
       inputValue: "",
-      items: Object.keys(this.HASH_FUNCTIONS),
-      select: Object.keys(this.HASH_FUNCTIONS)[0]
+      passphraseValue: "",
+      items: Object.keys(this.SYM_ENC_FUNCTIONS),
+      select: Object.keys(this.SYM_ENC_FUNCTIONS)[0]
     }
   },
   computed: {
     outputValue: {
       get() {
-        return this.HASH_FUNCTIONS[this.select](this.inputValue)
+        let encrypted = this.SYM_ENC_FUNCTIONS[this.select].func.encrypt(this.inputValue, this.passphraseValue)
+        return encrypted.ciphertext.toString(CryptoJS.enc.Base64)
       }
     }, set(val) {
       return val
@@ -59,7 +84,6 @@ export default {
   },
   methods: {
     test() {
-
       console.log();
       /*
       let aesKeyHex = CryptoJS.enc.Hex.parse(Buffer.from(this.aesKey, 'base64').toString('hex'));
@@ -68,8 +92,7 @@ export default {
       iv: ivHex,
     });
     return aesEncryptedPin.ciphertext.toString(CryptoJS.enc.Base64)
-
- */
+    */
     }
   },
   created() {

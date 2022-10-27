@@ -74,7 +74,7 @@ export default {
     tabItems: [
       {title: 'Hash Function', value: 'hash'},
       {title: 'HMAC', value: 'hmac'},
-      //{title: 'Symmetric Encryption', value: 'sym-encrypt'},
+      {title: 'Symmetric Encryption', value: 'sym-encrypt'},
     ]
   }),
 }
